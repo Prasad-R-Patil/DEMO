@@ -1,0 +1,130 @@
+-- SQL Queries for Assignment 007 and 008
+
+-- Assignment 007: SELECT Queries with WHERE, GROUP BY, HAVING, ORDER BY, LIMIT
+
+-- List all students
+SELECT * FROM student;
+
+-- List first and last names of all students
+SELECT namefirst, namelast FROM student;
+
+-- Display student information where student ID is 10
+SELECT * FROM student WHERE studentID = 10;
+
+-- List all faculties
+SELECT * FROM faculty;
+
+-- List all students having 'A' as the second letter in their first name
+SELECT * FROM student WHERE namefirst LIKE '_A%';
+
+-- List all students having letter 'A' in their first name
+SELECT * FROM student WHERE namefirst LIKE '%A%';
+
+-- Display details of the student whose DoB is '1986-12-14'
+SELECT * FROM student WHERE DoB = '1986-12-14';
+
+-- List all students having 'R' as the first letter in their first name
+SELECT * FROM student WHERE namefirst LIKE 'R%';
+
+-- Display first and last names with customized column headings
+SELECT namefirst AS 'First Name', namelast AS 'Last Name' FROM student;
+
+-- Display all students in ascending order of DOB
+SELECT * FROM student ORDER BY DoB ASC;
+
+-- Display two records of students whose name starts with 'S'
+SELECT * FROM student WHERE namefirst LIKE 'S%' LIMIT 2;
+
+-- Display all modules with duration 1
+SELECT * FROM modules WHERE module_duration = 1;
+
+-- Display batches with sitting capacity of 80
+SELECT * FROM course_batches WHERE sitting_capacity = 80;
+
+-- Display students who did 'BE' and scored more than 70
+SELECT * FROM student_qualifications WHERE degree = 'BE' AND marks > 70;
+
+-- Display students who did 'BE' and graduated in 2017
+SELECT * FROM student_qualifications WHERE degree = 'BE' AND year = 2017;
+
+-- Display students who did 'BE', graduated in 2017, and scored more than 80
+SELECT * FROM student_qualifications WHERE degree = 'BE' AND year = 2017 AND marks > 80;
+
+-- Display faculty qualification who did 'BE' from 'Harvard University'
+SELECT * FROM faculty_qualifications WHERE degree = 'BE' AND university = 'Harvard University';
+
+-- Display courses with duration of 6 months
+SELECT * FROM course WHERE course_duration = 6;
+
+-- Display modules with duration between 1 and 2, sorted by module duration
+SELECT * FROM modules WHERE module_duration BETWEEN 1 AND 2 ORDER BY module_duration ASC;
+
+-- Display voting rights based on birth year
+SELECT *, 
+CASE WHEN YEAR(DoB) < 1980 THEN '*The student can vote' ELSE 'The student cannot vote' END AS VotingRights
+FROM student;
+
+-- Display distinct universities from student_qualifications table
+SELECT DISTINCT university FROM student_qualifications;
+
+-- Display the second highest marks in 'BE'
+SELECT MAX(marks) FROM student_qualifications WHERE marks < (SELECT MAX(marks) FROM student_qualifications WHERE degree = 'BE');
+
+-- Display the second lowest marks in 'BE'
+SELECT MIN(marks) FROM student_qualifications WHERE marks > (SELECT MIN(marks) FROM student_qualifications WHERE degree = 'BE');
+
+-- Display last 7 students
+SELECT * FROM student ORDER BY studentID DESC LIMIT 7;
+
+-- Assignment 008: Aggregate Functions
+
+-- Count total number of students
+SELECT COUNT(*) FROM student;
+
+-- Count total students born in 1986
+SELECT COUNT(*) FROM student WHERE YEAR(DoB) = 1986;
+
+-- Count students whose first name starts with 'B'
+SELECT COUNT(*) FROM student WHERE namefirst LIKE 'B%';
+
+-- Count students born in July
+SELECT COUNT(*) FROM student WHERE MONTH(DoB) = 7;
+
+-- Count studentID having more than two phones
+SELECT studentID, COUNT(*) FROM student_phone GROUP BY studentID HAVING COUNT(*) > 2;
+
+-- Count unique universities
+SELECT COUNT(DISTINCT university) FROM student_qualifications;
+
+-- Display university name and count of students who did 'BE'
+SELECT university, COUNT(*) FROM student_qualifications WHERE degree = 'BE' GROUP BY university;
+
+-- Count students who did 'BE'
+SELECT COUNT(*) FROM student_qualifications WHERE degree = 'BE';
+
+-- Count students who did not do 'BE'
+SELECT COUNT(*) FROM student_qualifications WHERE degree <> 'BE';
+
+-- Find maximum marks in 'BE'
+SELECT MAX(marks) FROM student_qualifications WHERE degree = 'BE';
+
+-- Find minimum marks in 'BE'
+SELECT MIN(marks) FROM student_qualifications WHERE degree = 'BE';
+
+-- Count course_batches started on '2016-02-01'
+SELECT COUNT(*) FROM course_batches WHERE start_date = '2016-02-01';
+
+-- Count students with more than 60% in 'BE'
+SELECT COUNT(*) FROM student_qualifications WHERE degree = 'BE' AND marks > 60;
+
+-- Count students with more than 60% in 'BE' from 'Harvard University'
+SELECT COUNT(*) FROM student_qualifications WHERE degree = 'BE' AND marks > 60 AND university = 'Harvard University';
+
+-- Count number of courses
+SELECT COUNT(*) FROM course;
+
+-- Count distinct universities from student_qualifications
+SELECT COUNT(DISTINCT university) FROM student_qualifications;
+
+-- Find maximum marks in 'BE'
+SELECT MAX(marks) FROM student_qualifications WHERE degree = 'BE';
