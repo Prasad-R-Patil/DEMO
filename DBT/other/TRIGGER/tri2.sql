@@ -1,0 +1,15 @@
+DROP TRIGGER IF EXISTS tri2;
+
+DELIMITER $$
+
+CREATE TRIGGER tri2 
+BEFORE UPDATE ON emp 
+FOR EACH ROW
+BEGIN
+    IF OLD.sal > NEW.sal THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Salary is less than old salary...';
+        
+    END IF;
+END $$
+
+DELIMITER ;
