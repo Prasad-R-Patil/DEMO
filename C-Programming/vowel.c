@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 int main()
 {   
@@ -13,4 +14,5 @@ int main()
 		cnt++;
 	}
 	printf("%d",cnt);
+
 }
