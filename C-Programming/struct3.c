@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 /*
 
 //old code
 
+=======
+>>>>>>> 7dbe379dd13eb771515615d48b2313cb49034e72
 #include<stdio.h>
 
 
@@ -58,6 +61,7 @@ int main()
 	return 0;
 }
 
+<<<<<<< HEAD
 */
 
 
@@ -106,3 +110,6 @@ int main() {
 
     return 0;
 }
+=======
+
+>>>>>>> 7dbe379dd13eb771515615d48b2313cb49034e72
