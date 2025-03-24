@@ -15,10 +15,13 @@ using namespace std;
 	 int i,j;
 	 // cout<<len;
 
-	 /*if ( (len>=6) && (len%2==0) && ((str[0]=='Z')||(str[0]=='z')) && ((str[p]=='Z')||(str[p]=='z')) )
+	 if ( (len>=6) && (len%2==0) && ((str[0]=='Z')||(str[0]=='z')) && ((str[p]=='Z') ||(str[p]=='z')) )
      {
-		for(i=0,j=len/2; i<=len/2; i++,j++)
+		 //cout<<"len/2  "<<len/2;
+		 
+		for(i=0,j=len/2; i<=(len/2); i++,j++)
 		{
+			 cout<<"\ni =" <<i;
 		 if(str[i]==str[j])
 			 continue;
 		 else
@@ -26,23 +29,23 @@ using namespace std;
 		}
 
 	 }
-
+    
 
 		if (i==(len/2))
 		{
-		 cout<<"\n "<<str<<" this string is magical...";
+		 cout<<"\n\a "<<str<<" this string is magical...";
 		}
 		else
 		{
-			cout<<"\n "<<str<<" this not string is magical...";
+			cout<<"\n\a "<<str<<" this not string is magical...";
 		}
 
 
 
-	 */
+	 
 
 
-
+/*
 
 	 if(len>=6)
      {
@@ -83,7 +86,7 @@ using namespace std;
 
 
 
-
+*/
 
 
 

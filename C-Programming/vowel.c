@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7dbe379dd13eb771515615d48b2313cb49034e72
 #include<stdio.h>
 int main()
 {   
@@ -13,4 +17,8 @@ int main()
 		cnt++;
 	}
 	printf("%d",cnt);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7dbe379dd13eb771515615d48b2313cb49034e72
 }
