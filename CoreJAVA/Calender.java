@@ -26,7 +26,7 @@ public class Calender {
 		int Tdays=s1.nextInt();
 		c.inIt(Tdays);
 		
-		
+	
 	}
 	
 	
