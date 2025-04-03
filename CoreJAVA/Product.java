@@ -5,6 +5,11 @@ public class Product {
 	private int price;
 	private int quantity;
 	
+	public Product()
+	{
+		
+	}
+	
 	public Product(int id,int pr,int qu)
 	{
 		pid=id;

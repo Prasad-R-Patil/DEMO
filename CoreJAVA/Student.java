@@ -1,81 +1,57 @@
-package session_03;
-
-import java.util.Scanner;
+package Assignment_02;
 
 public class Student {
-		private int rollNo;
-		private String name;
-		private float m1,m2,m3;
+
+	private String name;
+	private int rollNo;
+	private int age;
+	private int score;
+	
+	public Student()
+	{
 		
-		public Student(int rn,String nm,float m1,float m2,float m3)
-		{
-			rollNo=rn;
-			name=nm;
-			this.m1=m1;
-			this.m2=m2;
-			this.m3=m3;
-		}
+	}
+	
+	public Student(String nm,int rn,int ag,int sc)
+	{
+		name=nm;
+		rollNo=rn;
+		age=ag;
+		score=sc;
+	}
 
-		
-		public int getRollNo() {
-			return rollNo;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public void setRollNo(int rollNo) {
-			this.rollNo = rollNo;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public String getName() {
-			return name;
-		}
+	public int getRollNo() {
+		return rollNo;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public void setRollNo(int rollNo) {
+		this.rollNo = rollNo;
+	}
 
-		public float getM1() {
-			return m1;
-		}
+	public int getAge() {
+		return age;
+	}
 
-		public void setM1(float m1) {
-			this.m1 = m1;
-		}
+	public void setAge(int age) {
+		this.age = age;
+	}
 
-		public float getM2() {
-			return m2;
-		}
+	public int getScore() {
+		return score;
+	}
 
-		public void setM2(float m2) {
-			this.m2 = m2;
-		}
+	public void setScore(int score) {
+		this.score = score;
+	}
 
-		public float getM3() {
-			return m3;
-		}
-
-		public void setM3(float m3) {
-			this.m3 = m3;
-		}
-
-		
-		public String toString() 
-		{
-			
-			return "Student => " + rollNo + "  " + name + " " + m1 + " " + m2 + " " + m3+" " ;
-			
-		}
-		
-		
-		public static void getMarkesObtained(Student std[])
-		{
-			for(int i=0;i<std.length;i++)
-			{
-				System.out.println("----------------------------------------------------------------------");
-				System.out.println(std[i]+ " "+(std[i].getM1()+std[i].getM2()+std[i].getM3()));
-				System.out.println("----------------------------------------------------------------------");
-			}
-		}
-		
-		
-		
+	
+	
 }
