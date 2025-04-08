@@ -144,6 +144,23 @@ public class XYZ3 {
 		System.out.println("---------------------------------------------------------------------");
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		for(int i=0;i<5;i++)
+		{
+			if((cs[i].percentage>=75)||(ss[i].percentage>=75))
+			{
+				System.out.println("ThisStudent Have Gread A");
+			}
+		}
+		
+		
 	}
 
 }

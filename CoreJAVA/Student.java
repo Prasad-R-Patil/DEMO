@@ -1,25 +1,41 @@
-package Assignment03;
 
 public class Student {
 	
-	protected int rollNo;
-	protected float percentage;
+	private int rollNo;
+	private String name;
+	private float marks;
 	
-	public Student() {}
-	public Student(int rollNo, float percentage) {
-		super();
-		this.rollNo = rollNo;
-		this.percentage = percentage;
+	public Student()
+	{
+		System.out.println("Default Constructor Invoked!!...");
+		
+		rollNo=1;
+		name="Sagar";
+		marks=89.67f;
+		
+	
+	
+	}
+	
+	public Student(int rn,String nm,float mks)
+	{
+		System.out.println("Parmeterised Constructor Called");
+		
+		rollNo=rn;
+		name=nm;
+		marks=mks;
 	}
 	
 	
-	public void show(Student[] s)
+	public static void main(String [] args)
 	{
+		Student s=new Student();
+		System.out.println(s.rollNo+"  "+s.name+"  "+s.marks );
+		
+		Student s1=new Student();
+		
+		System.out.println(s.rollNo+"  "+s.name+"  "+s.marks);
 		
 	}
-	
-	
-	
-	
 
 }

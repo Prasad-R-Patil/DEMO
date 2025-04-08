@@ -1,44 +1,44 @@
-package assignment1;
 
-public class Employee {
-	private static int empNo;
-	private int salary;
-	private static int totalSalary;
+public class Employee 
+{
+	private int empId;
+	private String empName;
+	private float empSal;
 	
-	
-	public Employee(int sal)
+	public void initEmp()
 	{
-		this.empNo= ++empNo;
-		salary=sal;
-		
-		totalSalary += salary;
+		empId=111;
+		empName="Rahul";
+		empSal=12000.86f;
 	}
 	
-	
-	
-	public void display()
+	public void displayEnp()
 	{
-		
-		System.out.println("Employee = > "+empNo+" "+salary);
-		
+		System.out.println("Employee= "+empId+"  "+empName+"  "+empSal);
 	}
 	
-	public static void displaytotal()
+	public static void main(String args[])
 	{
-		System.out.println("Total Salary is =>"+totalSalary);
+		Employee e= new Employee();
+		
+		System.out.println("Emp id ="+e.empId);
+		System.out.println("Emp Name ="+e.empName);
+		System.out.println("Emp Salery ="+e.empSal);
+		
+		System.out.println("====================================================");
+		
+		e.initEmp();
+		
+		System.out.println("====================================================");
+		
+		System.out.println("Emp id ="+e.empId);
+		System.out.println("Emp Name ="+e.empName);
+		System.out.println("Emp Salery ="+e.empSal);
+		
+		System.out.println("====================================================");
+		
+		e.displayEnp();
+		
+		
 	}
-	
-
-	
-	public static void main(String[] args) {
-		Employee em= new Employee(12000);
-		em.display();
-		Employee em1= new Employee(12500);
-		em1.display();
-		
-		Employee.displaytotal();
-		
-		
-	}
-
 }
