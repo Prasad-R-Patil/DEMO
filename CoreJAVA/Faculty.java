@@ -1,28 +1,40 @@
-package Assignment03;
+package campus.academics;
 
-public class Faculty {
+import campus.data.Person;
+
+public class Faculty extends Person {
 	
 	protected int facultyId;
 	protected int salary;
+	protected String branch;
 	
-	public Faculty() {}
-	
-	public Faculty(int fi)
-	{
-		facultyId=fi;
+	public Faculty() {
+		super();
 		
 	}
 	
-	public void calSal()
+	public Faculty(int facultyId , int salary, String branch,String nm,int age,String add) {
+		super(nm,age,add);
+		this.facultyId = facultyId;
+		this.salary = salary;
+		this.branch = branch;
+	}
+	
+	public void calSal(Faculty [] e)
 	{
-		salary=0;
+		int sum=0;
+		for(int i=0;i<e.length;i++)
+		{
+		sum +=e[i].salary;
+		}
+		
+		System.out.println("Sum of Salary is:-"+sum);
+	
 	}
 	
 	
 	
-	public void display()
-	{
-		System.out.println("Faculty Id"+facultyId+" Salary:->"+salary);
-	}
+	
+	
 
 }

@@ -1,43 +1,23 @@
-package assignment1;
+package campus.data;
 
 public class Person {
+	protected String name;
+	protected int age;
+	protected String address;
 	
-	private String Name;
-	private int Age;
 	
-	public Person()
-	{
-		Age=18;
+	public Person() {
+		super();
 		
 	}
-	
-	public Person(String nm)
-	{
-		Name=nm;
-		Age=18;
-		
-	}
-	public Person(String nm,int ag)
-	{
-		Name=nm;
-		Age=ag;
+	public Person(String name, int age, String address) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.address = address;
 	}
 	
-	public void display()
-	{
-		System.out.println("Person info ["+Name+"  "+Age+"]");
-	}
 	
-	public static void main(String[] args) {
-		Person pn = new Person();
-		pn.display();
-		
-		Person pn1 = new Person("prasad");
-		pn1.display();
-		
-		Person pn2 = new Person("Sagar",20);
-		
-		pn2.display();
-	}
+	
 
 }

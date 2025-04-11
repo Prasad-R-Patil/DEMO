@@ -38,6 +38,13 @@ public abstract class Bank {
 	public abstract void display(Bank[] b);
 	
 	
+	
+	public void withdrowal(Bank[] e, float amt, int ac) {};
+	
+	public void deposit(Bank[] e, float amt, int ac) {};
+	
+	
+	
 	public void BankTBal()
 	{
 		

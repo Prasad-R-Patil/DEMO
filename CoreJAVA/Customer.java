@@ -126,6 +126,7 @@ public class Customer {
 		sav.display(sev);
 		double ds=sav.dcal(sev);
 		
+		
 		Bank curr=new Current();
 		
 		
@@ -160,6 +161,56 @@ public class Customer {
 		
 		
 		System.out.println("--------------------------------------------------");
+		
+		System.out.println("Enter Seaving Accout No You Want To deposit money:->");
+		int ac1=s.nextInt();
+		
+		System.out.println("Enter Deposit Amount :->");
+		float Depo=s.nextFloat();
+		
+		sav.deposit(sev, Depo, ac1);
+		
+		
+		System.out.println("--------------------------------------------------");
+		
+		System.out.println("Enter Current Accout No You Want To deposit money:->");
+		int ac2=s.nextInt();
+		
+		System.out.println("Enter Deposit Amount :->");
+		float Depo1=s.nextFloat();
+		
+		curr.deposit(sev, Depo1, ac2);
+		
+		
+		System.out.println("--------------------------------------------------");
+		
+		
+System.out.println("--------------------------------------------------");
+		
+		System.out.println("Enter Seaving Accout No You Want To Withdrowal money:->");
+		int ac3=s.nextInt();
+		
+		System.out.println("Enter Withdrowal Amount :->");
+		float With=s.nextFloat();
+		
+		sav.withdrowal(sev, With, ac3);
+		
+		
+		System.out.println("--------------------------------------------------");
+		
+		System.out.println("Enter Current Accout No You Want To Withdrowal money:->");
+		int ac4=s.nextInt();
+		
+		System.out.println("Enter Withdrowal Amount :->");
+		float With1=s.nextFloat();
+		
+		curr.withdrowal(sev, With1, ac4);
+		
+		
+		System.out.println("--------------------------------------------------");
+		
+		
+		
 		
 		System.out.println("In bank total diposit is -->"+(ds+dc));
 		

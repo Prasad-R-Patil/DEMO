@@ -1,41 +1,34 @@
+package campus.academics;
 
-public class Student {
+import campus.data.Person;
+
+
+
+public class Student extends Person {
+	protected int rollNo;
+	protected String branch;
+	protected int semister;
 	
-	private int rollNo;
-	private String name;
-	private float marks;
 	
-	public Student()
-	{
-		System.out.println("Default Constructor Invoked!!...");
+	public Student() {
+		super();
 		
-		rollNo=1;
-		name="Sagar";
-		marks=89.67f;
-		
-	
-	
 	}
 	
-	public Student(int rn,String nm,float mks)
-	{
-		System.out.println("Parmeterised Constructor Called");
-		
-		rollNo=rn;
-		name=nm;
-		marks=mks;
+	public Student(int rollNo, String branch, int semister,String nm,int age,String add) {
+		super(nm,age,add);
+		this.rollNo = rollNo;
+		this.branch = branch;
+		this.semister = semister;
 	}
 	
 	
-	public static void main(String [] args)
-	{
-		Student s=new Student();
-		System.out.println(s.rollNo+"  "+s.name+"  "+s.marks );
-		
-		Student s1=new Student();
-		
-		System.out.println(s.rollNo+"  "+s.name+"  "+s.marks);
-		
-	}
+
+
+
+
+	
+	
+	
 
 }
