@@ -1,0 +1,25 @@
+join():
+	it causes the currently running thread to stop executing
+	 until the thread it
+	joins completes the task
+	
+	Waits for the thread to die
+	
+	
+	
+yeild():
+public static void yeild() throws InterruptedException
+Causes the currently exceuting thread object to temporarily pause 
+and allow other thread to execute
+
+int enumerate(Thread[] t):
+	to copy all active threads of this thread group into provided thread array
+	
+	g.enumerate(t);
+	g - threadgroup
+	t - thread array
+
+
+
+	
+	
