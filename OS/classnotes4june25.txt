@@ -1,0 +1,777 @@
+Good Morning :))
+
+What is OS ?
+ system software
+ interface between 
+  a. end user and system ( CLI , GUI )
+  b. user program( add.c)  and system ( system calls )
+ It manages the system in foll ways
+  process management
+  memory management
+  device management
+  security
+  
+ System : 
+  a. Storage
+		HDD/SSD --  >1Tb, 
+		RAM/Memory -- > 8GB ,
+		Cache Memory L1 and L2
+		Register ---  size  32bit, 64 bit , 128 bit
+		
+  b. Processor =
+		a. CPU ( ALU ) = CPU instructions
+					Arithmetic( + - * / % )
+					logical ( && || ! )
+					relational ( > < >=<= != ==)
+		At a time a single instruction runs
+		instruction >>> IR 
+		operands >>>DR0,DR1
+		temp result computed by ALU >>>Accumulator
+		Address of next instruction >> PC
+	     
+		 b. IO processor = DMA = Direct Memory Access
+		      transfer data bet RAM and IO devices
+			  NOT involving CPU
+			  
+		 c.  GPU  =  For the UI processing
+		 
+		 
+   3. IO  Devices
+_________________________________
+OS = Kernel 
+2 architectures = Monolithic - linux , unix, DOS,WinNT
+/MicroKernel  = Minix 
+
+Kernel space , User space }}  RAM space
+
+Kernel mode , User mode }} privilages to access memory
+
+Interrupts = signal
+   received by CPU interrupts pins
+   sent by IO devices , timers, programmatic interrupt
+  
+ maskabale interrupts = ignore OR handle = timer interrupt, network interrupt
+ 
+ non maskabale = compulsary handle = TRAP  
+ 
+ IVT = Interrupt Vector Table = Mapping interrupt number and interrupt handler function pointer 
+__________________________________
+Process = program in execution 
+Process has a life cycle
+	goes through phases - 
+	create = 1. process gets space in RAM 
+				address space/process space
+				C process = code, data,stack,heap
+				java process = class area, stack, heap
+				JS = stack and heap, queue
+
+				PCB is created = process control block - info abt the process
+				pid ,status, priority, location , context
+				
+	ready  = PCB is added to ready queue.
+				process waits for CPU
+				
+	run = process uses CPU 
+	           a. code ends ===>Terminate 
+			   b. interrupt ===> ready state
+			   c. IO instruction ===>IO wait state
+	_________________________________________
+	
+	What is the difference between process and thread ?
+	Process = program in execution
+	
+	Thread = path of execution in a process
+	
+	path = start point of execution
+	        = first instruction
+		 = end point of execution 
+		    = last instruction
+		 = intermediate points of execution
+		 
+		 = SEQUENCE of instructions that should get executed .
+		 
+	DEFAULT THREAD  =  main thread
+		start point = main() {  
+				...
+				...
+				...
+		end point  = } //end point
+		 
+	One process can have many paths of execution
+		= multithreading
+	
+	Java = other paths
+	       public void run()
+		   {
+			....
+			...
+			...
+		   }
+		
+	Multithreading 
+		path2 execution does not wait for path1 execution to finish 
+		
+	Thread = light weight process
+	   - new thread creation needs only creating a stack in process space
+	   - new process creation needs code, data,stack,heap creation 
+	   
+	   
+	2 processes never share process space of each other - process space is exclusive
+	2 threads of same process can easily share data, code and heap areas 
+	However stacks are exclusive
+__________________________________
+Life cycle of process and thread is same
+_________________________________
+Cpu burst time = total time to complete all cpu instructions in the process 
+ 
+Io burst time = total time to complete all io instructions in the process 
+
+Wait time = total time spent by process in the ready queue.
+
+Average wait time = ( Wt1 + Wt2 + Wt3+ ...+Wtn)/n
+
+Good Avg Wt =  as LOW as possible
+-----------------
+Turnaround time = total time required to complete a process life cycle ( excluding IO wait time ) 
+
+Ta = Cpu-burst-time  +  Wait-time
+
+Average Ta = ( Ta1 + Ta2+..Tan)/n
+
+Good Avg Ta =  as Low as possible 
+( OS should minimize wait time )
+
+--------------------------
+response time = time taken by the process to respond to the user request
+
+Good response time  = as low as possible
+-----------------------------
+Throughput = Number of processes completed in unit time  === processes/sec
+Good throughput = as High as possible
+_____________________________________
+KERNEL should arrange the process execution in such a way that all above factors are GOOD !!!
+=== AIM of process scheduling  
+
+Different ways of arranging the process execution is called as Process scheduling algorithms !!!
+
+THE part of the kernel that performs process scheduling =  CPU-schedular , schedular , low level schedular.
+
+
+1. FCFS /FIFO = process in the front of the READY QUEUE gets the CPU .
+   process can use the CPU for entire CPU burst time.
+   ( Assumption : no interrupt occurs , no IO instr )
+  Adv :
+    1. SIMPLE
+	2. All processes will get a chance to run sooner or later
+	
+  DisAdv : 
+   1. priority is not considered
+   2. low cpu burst process MAY have to wait after high cpu burst process -- Increasing Avg Ta
+   
+ 2. SJF = Shortest Job First = schedular will execute the smallest cpu burst process in the READY QUEUE first.
+	 process can use the CPU for entire CPU burst time.
+   ( Assumption : no interrupt occurs , no IO instr )
+
+Adv : Average Wt and Ta reduces , improving the throughput.
+
+DisAdv : Theoretical ONLY . NOT practically possible.
+We cant figure out the cpu burst time beforehand
+
+2. STARVATION  = Process with high cpu burst may never get a chance to run
+
+TWO variations 
+1. Preemptive SJF  = a process using CPU may be forced to leave the CPU as a new process with lower cpu burst entered the ready queue .
+
+such kernel  is called as Preemptive Kernel 
+
+2. NON Preemptive SJF = a process using cpu cannot be forced to leave the cpu if a newer lower cpu burst process enters ready queue
+------------------------
+Priority Scheduling = a process with higher priority in the ready queue is selected to use the CPU 
+
+Priority is determined by ?  
+kernel or user process ,
+which user started the process 
+programmer can set the priority using system call
+
+Preemptive Priority Scheduling
+Non Preemptive priority Scheduling 
+
+Adv : 1. Priority is considered
+	  2. practically implementable 
+	  
+DisAdv : 1. STARVATION of low priority process
+_______________________________
+Context = snapshot of the CPU registers at a given point of time 
+
+Context Switching = Save context of current process 
+and load context of next process
+
+Context switching helps kernel to RESUME a process from where it left !!!!
+
+_______________________________
+Round Robin Scheduling = Select a process that is in the front of the ready queue. However the process gets the cpu only for a stipulated time interval 
+after that a timer interrupt occurs , process is sent to the rear of the ready queue.
+Time interval = time slice = kernel generated
+
+Adv : Response Time is low as every process gets a chance to run without earlier processes finishing
+End user gets a effect of Simultaneous execution 
+Multitasking effect , Multithreading 
+
+   b. No STARVATION
+   
+DisAdv :Wt is HIGH , Ta is High, Throughput LOW 
+	   : Huge context switching OVERHEAD
+_________________________________________
+
+
+    Process      Arrival Time      CPU burst time
+	  P1           0                  3
+	  P2           1                  4
+	  P3           2                  2
+
+Calculate avg Wt and avg Ta USING  FIFO 
+
+GANTT CHART 
+  Process      Arrival Time      CPU burst time
+	  P1           0                  4
+	  P2           1                  1
+	  P3           2                  2
+
+Calculate avg Wt and avg Ta USING  Preemptive SJF
+
+ Ready queue 
+    P1(3), P3(2)
+	
+	P1    P2   P3    P1
+	0--1|1--2 |2--4|4--7
+	
+	Wt  P1 =  start -arrival + (resume-prempt)
+		   = 0-0 +  (4-1) =  3
+		P2 =  1-1  = 0
+		P3 = 2-2 = 0
+------------------------------
+
+Process      Arrival Time   CPU burst time  Priority
+	  P1           0           4               5
+	  P2           1           1               3
+	  P3           3           2	           9
+	  P4           2           5               4
+	  
+Calculate avg Wt and avg Ta USING  
+FIFO
+Preemptive SJF
+Non preemptive SJF
+Preemptive Priority
+Non Preemptive Priority
+	  
+-------------------------------------
+HW 
+  process    arrival     cpu_burst
+   P1           0           4
+   P2           2           5
+   P3           3           6
+
+calculate the avg Wt and Ta using RR , 
+Time slice =2ms
+_____________________________________
+ pwd, clear, cd , abs path, relative path
+ mkdir , rmdir, rm -r , ls , ls -R 
+ _____________________________________
+ Ex -
+ Create a file planets.
+ 0kb file  =   touch 
+  open the file and edit it  = vi command line editor
+  save the file and view it from the prompt 
+ --------------------
+   pwd is ~ 
+   touch planets  }} 0kb file 
+   CHECK the folder
+   ls -l ( detailed listing )
+   observe that the file of size 0kb is created 
+ ----------------------
+   vi planets
+   edit by pressing i , type whatever you want
+   save by pressing esc :w
+   try :wq , :q, :q! 
+   
+   come back to prompt
+   cat planets
+   tac planets
+   ls -l }} observe that file size has increased 
+ -----------------------------------
+   vi test 
+   save and quit
+   ls  and check
+   remove this file 
+    rm filename   
+	ls 
+---------------------------------
+Rename planets to viguide
+    mv source target
+	mv ./planets  ./viguide 
+--------------------------------
+Create a folder 4june   4june/cprog  
+pwd ~  
+ mkdir ./4june ./4june/cprogs
+ ls -R 
+ -----------------------------
+copy the viguide file from ~ to 4june 
+	cp source target 
+	cp ./viguide ./4june
+	ls ./4june
+	
+mv the viguide to 4june and keep it as backup 
+mv ./viguide ./4june/backup
+ls ./4june 
+-------------------------------
+create a backupfolder in ~ 
+pwd ~
+mkdir backupfolder
+copy the 4june folder from ~ to backupfolder
+cp -r ./4june ./backupfolder
+ls -R
+-------------------------------
+Process Management system calls in Linux 
+
+What is a system call ? 
+ it is a function call 
+ function is system function }} kernel process
+ 
+ __________________________________
+  ps =  to see the processes started by current terminal 
+  
+  ps -e ( entire system )
+  _____________________________________
+  Write a c program that prints hello infinitely
+  vi hello.c
+  write, save quit
+  gcc hello.c
+  ls } find the a.out compiled file 
+  run  prompt >>  ./a.out
+  
+  on another terminal use  ps -ef
+  it shows that each process has a pid and ppid 
+  pid = process id
+  ppid = parent process id 
+  
+  EVERY process is forked from the parent process
+  
+	1. system call = getpid() , getppid() 
+		fork () 
+		
+    kill pid }} terminate the process with that pid 
+  
+	What does fork() do ?  
+	   it will copy the address space 
+	   create a new pid = CHILD PROCESS 
+	
+	ORPHAN PROCESS =  the child is still running after the parent has terminated , ppid of child is 1 .
+	
+	ZOMBIE PROCESS =  The child process has terminated after the parent process , so the records of the child process are not removed unnecessarily using space in the RAM .
+	
+	To avoid zombie proceses ---
+	
+	To PREVENT the termination of  parent process till child does not complete -----  wait , waitpid  - so that the child data is removed and no zombie processes remain.
+_____________________________________
+
+shell script 
+  interpreted code 
+  code written using bash commands 
+  Extension  =   .sh 
+ 
+Ex1  write a shell script to print hello world 
+
+Ex2  write a shell script to print the contents of a folder 
+
+Ex3 = WASS to create a folder in the current folder for which name is entered by user 
+
+Ex4  = WASS to create a 0kb file whose name is entered by the user. create this file in parent folder , show the contents of parent folder 
+
+Ex5 = WASS to accept the name and the newname of file from user
+ rename the file with newname 
+ 
+ _________________________________
+ REFERENCE CODE 
+ 
+ echo "enter path of folder"
+read fp
+echo "the contents of the $fp folder are : ---"
+ls $fp
+
+--------------------------
+echo "hello world"
+
+--------------------------
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+void main()
+{
+    while(1)
+      printf("hello pid=%d ppid=%d \n",getpid(),getppid());
+}
+------------------------
+#include<stdio.h>
+#include<unistd.h>
+
+void main()
+{
+  fork();
+  fork();
+  fork();
+  printf("pid=%d, ppid=%d\n",getpid(),getppid());
+}
+-------------------------
+#include<stdio.h>
+#include<unistd.h>
+
+void main()
+{
+        int pid;
+        pid = fork();
+        printf("pid returned by fork is = %d and my pid is %d\n",pid,getpid());
+
+}
+---------------------------------
+#include<stdio.h>
+#include<unistd.h>
+
+void main()
+{
+        int pid;
+        pid = fork();
+       if(pid > 0)
+        {
+           printf("square of 2 is 4 pid=%d ppid=%d \n",getpid(),getppid());
+         waitpid(pid,NULL,0);
+         printf("parent is ending now!!! \n");
+        }
+        else
+          printf("cube of 2 is 8 pid=%d ppid=%d \n",getpid(),getppid());
+}
+--------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+   
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Process Scheduling algorithms ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	   
+	   
+	   
+	   
+	
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+			
+	
+	
+	
+	
+	
+	
+	
+			   
+			   
+			   
+			   
+			   
+			   
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+
+
+
+
+ 
+   
+
+
+
+
+
+
+
+
+			  
+	
+		
+		
+					
+					
+					
+					
+  
+  
+  
+  
+  
+  
+  
+  

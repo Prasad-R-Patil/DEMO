@@ -1,0 +1,687 @@
+Good Morning :)
+
+instruction = command  cd, mkdir 
+			= executed by processor CPU 
+			= +  - * /% , == <=. &&  ! ||
+			
+program = Set of instructions to perform a task
+
+Software  = set of programs to solve a problem
+ system software =  software to manage hardware
+ manage system = compiler , interpreter , linkers, loaders, device drivers , Operating System
+ 
+ application software = software used to solve end user problems ex = notepad, paint, eclipse , word, add.c, factorial.java, tomcat , mysql.
+
+Define OS  = Operating System= OS is a system software
+It acts as an interface between
+	a. end user and system through CLI and GUI
+	b. user program and system through system calls
+	 sysout ===> systemcall write==>Device driver==>monitor
+	 
+It will perform system management as follows :
+1. process management
+2. memory management
+3. Device management
+4. Authentication /Security 
+
+What is the system?
+   1. STORAGE  
+   2. PROCESSOR
+   
+ STORAGE 
+ 1.  SSD/HDD  =  Non volatile storage 
+			  =  secondary storage 
+			  =  add.c  is stored here
+			  =  add.exe is stored here
+			  =  Size  1 TB  onwards
+			  
+ 2.   RAM/Memory = Volatile storage
+                 = primary memory
+				 = add.exe will be loaded by the loader here before execution
+				 = Size  8GB onwards
+				 
+ 3.   Cache Memory = Volatile storage
+                   = L1 and L2 cache 
+				   = part of the exe will be loaded in the cache 
+				   =  Cache HIT =  instruction or data is FOUND
+				   Cache MISS  = instruction or data is NOT FOUND
+				   = 4MB onwards
+				   
+  4.  Register  = Volatile storage
+			    = part of the CPU 
+				=  It will hold SINGLE instruction or single data  at a time
+				= SIZE = 32 bits/ 4 bytes / 8 bytes/16bytes  
+				
+HW  --  find out the access speeds of SSD,HDD,RAM,Cache and Register
+
+2. System must have  PROCESSOR
+		Processor=  Execute the Instructions
+		2 types of instructions
+		a. CPU instruction
+		b. IO instruction
+		
+	  add.c
+	  printf enter nos  ( IO instruction )
+	  scanf %d %d , &x, &y  ( IO instruction )
+	  z = x + y  (  CPU  instruction )
+	  printf z  ( IO instruction )
+	
+	
+	CPU instruction =instructions that can be executed by the CPU 
+	  CPU is made up of 
+		Register = 
+			IR = Instruction Register
+			   = at a time single CPU instruction
+			PC =  Program Counter
+			   = at a time single LOGICAL
+			   address of NEXT instruction
+			DRO = Data Register 0 
+			DR1 = Data Register 1
+			    = Each holds one operand at a time
+				
+			Accumulator = This stores the result of ALU temporarily
+	______________________________________
+			
+		ALU = Aritmetic and Logic Unit 
+		    = Executor = electronic circuits 
+			= Take input of OPERANDS and OPERATOR
+			= Produce RESULT 
+			= OPERATORS that can be executed by ALU
+				Aritmetic  + - * / %
+				Logical  && || !
+				Relational   < ,> <= >= != ==
+			= These are CPU instructions
+	
+____________________________________________________
+  IO Coprocessor = IO Processor = DMA Controller
+         
+    IO  Device <======DMA========> RAM		 
+	DMA = Direct Memory Access 
+	    = to tranfer DATA from RAM to output device	
+		= to tranfer Data from output device to RAM
+		= without INVOLVING CPU
+______________________________________
+Input Devices  = kbd, mouse, scanner , camera, mic, 
+				  file( HDD, SSD , PD , CD )
+				  modem ( network ),
+				  RFID thumb scanner
+				  bar code reader
+				  Card reader 
+				  Retina scanner 
+				  Face scanner 
+				  QR code scanner
+Output Devices = speaker , monitor, printer, projector
+					file( HDD, SSD , PD , CD )
+				     modem(network ),  plotter , 
+					 medical equipments
+________________________________________
+    Kernel = OS 
+
+2 types of kernel architecture
+1. Monolithic Kernel = example Ubuntu
+    =A single Kernel program that will do all the tasks
+	=Faster as less communication with outside parts
+	= if a module fails the OS crashes
+	
+2. Micro Kernel	 = example Windows
+	=Many small kernel programs that interact to give the OS functionality
+	=Slower due to communication overhead
+	= If one module fails , the other modules keep running				 
+
+HW = find examples of monolithic and micro kernels
+---------------------------------------
+2 modes of execution 
+  = kernel mode
+  = kernel programs run in this mode
+  = privilaged access = UNRESTRICTED Access to all memory addresses
+  --------------------------
+  = user mode 
+  = user programs run in this mode
+  = unprivilaged access = RESTRICTED Access to memory locations = only the address in its OWN address space can be accessed 
+-----------------------------------------
+Memory is divided into 2 SPACES
+   = Kernel space
+   = part of RAM where all kernel processes are stored
+   
+   = User space
+   = part of RAM where all user processes are stored
+--------------------------------------
+Interrupts 
+  It is a signal 
+  
+  Hardware Interrupts -
+    Sender = IO device , timer
+	Receiver = CPU pins
+	Signal =  Voltage on the pin 
+
+------
+After interrupt occurs = Interrupt should be handled
+The code that handles the interrupt is called as interrupt handler ( IH )
+ Mapping of interrupt number and interrupt handler is done in a table called as Interrupt Vector Table(IVT), Interrupt Table
+			Interrupt number |  handler pointer
+			  1				|  f1
+			  2              |  h1
+ 2 types on interrupts
+ = Maskable interrupt = this interrupt MAY be ignored or handled
+ = non maskable interrupt = this interrupt cannot be masked - MUST be handled 
+ 
+ HW :- 1. give examples of maskable and non maskable interrupts
+ 2.  TRAP  interrupt  = is it maskable or non maskable
+     when does it occur 
+	 
+______________________________________
+ Types of Operating Systems 
+  1. GPOS =  general purpose OS 
+			=  windows 11 ( single user OS )
+			=  IOS
+			= linux based OS 
+  2. Multi User OS  = at a time multiple users can log in to the OS instance = linux based OS
+	 
+  3. Network OS  = Windows NT  , Netware 
+  4.  Mobile OS = Android , windows mobile,ios
+  5. RTOS  = real time OS  = deadline based execution 
+			 LinuxRT
+  6. Embedded OS 
+  7. Batch OS 
+  8. Server OS = Unix OS, Solaris OS 
+  
+  HW -  give examples of different types of OS
+  ________________________________________
+  
+  Process Management  ----
+     process = program in execution 
+	         = location = RAM/Memory
+			 = structure= Address Space / Process space ( code, data, stack, heap = C, CPP
+					java= class area, stack area, heap area
+					JS = ???  )
+			  = Life cycle 	
+			  = Active
+			 	 
+	 program NOT in execution
+			= location = secondary storage
+            = no life cycle = lying in the storage
+			= Inactive 
+  ______________________________________
+  how many processes are running on this system ?
+    162 processes
+	
+  Program not in execution ==>RUN ==>Process
+				notepad.exe = C:\Windows\system32
+				Program in execution = Process
+				Task Manager 
+				notepad.exe PID = 2164,6040
+	
+	One program on HDD ===> Many processes ( running instance) 
+  
+  -------------------------------------
+  Process has a Life Cycle  ======
+    process goes through many states/phases
+	
+	1. Created phase  = process is born
+					  = process is a logical entity
+					  ( we cant copy, upload it )
+					  = Process address space is allocated in the RAM (code, data stack heap)
+					  = PCB is created ( process control block)
+					     - ID card of the process
+						 - Info abt the process
+						    1.pid
+							2.status
+							3.priority
+							4.location
+							5.context info
+						 
+						 
+	2. Ready phase  = the process will be added to a READY queue managed by kernel in kernel space.					 
+		process waits for CPU to be free!!	Bcoz :number of processes are more than number of Cores(processors )
+
+   3. Running/Execution Phase = the process uses the CPU ( IR , DR0, DR1, PC  )
+
+	 process will use the CPU untill
+	 a. code ends
+	 b. interrupt occurs
+     c. IO instruction
+
+    4. IO WAIT Phase = If the process is gets
+		 IO instruction
+		 = process will wait for the DMA to complete IO
+		 
+	5. Terminate Phase = The process address space is released, the pcb is released
+___________________________________________
+LAB  -  
+
+Server room =  CENT  OS  
+
+Linux based OS  
+2 types in OS 
+1. properietary
+	Pay for the license copy  - windows,apple, unix, solaris
+	
+2. GPL - 
+	Gnu Public licence = free license to the user
+    linux based OS  
+______________________________________
+Source code of the OS is available for review and change for linux based OS =  Open source 
+______________________________________
+Core Kernel =  Derived from Linux 
+
+We dont get linux os
+We get flavours of linux - linux based OS
+Ubuntu , Fedora, Red Hat, Kali , CENT , BOSS , Mint, Mandrake, Mandriva , Debian,.........
+
+Which one we are using ? Cent os
+_______________________________
+192.168.100.56 = IP address of CENT OS server
+user/password = group name
+
+Connect to the server from windows machine
+using one PROTOCOL =  SSH/Telnet - use a tool PUTTY 
+
+You will see the TERMINAL ( Endpoint of connection to the Cent os instance running on the server )
+________________________________________
+
+Once you login , you will see the CLI terminal process output = SHELL process 
+
+you see a prompt = [faculty@localhost home]$
+prompt indicates that you can type your command 
+
+Allowed command SET - depends on the SHELL program 
+Many SHELLS =  default shell is bash 
+	        =  C shell
+			=  Korn shell
+			=  TC shell 
+			=  K shell
+			= Bourne shell
+			= borne again shell = bash 
+different shells have different command set !!!
+
+we will use the default shell and its command set = bash !!!
+
+bash  =
+file handling commands
+Text manipulation commands
+shell scripts 
+_______________________________
+prompt= 
+1. clear = it will clear all the prompts but 1
+2. File structure of a linux file system = EXT2/3
+	how is the data arranged on the PARTITION 
+	in what format the data is stored/accessed
+	this is defined by the FILE system 
+	this is done by the FORMAT  
+	popular FS =  FAT32 , ext4 , NTFS
+	Dual Boot machine = 2 OSes 
+	one partition has Fat32 formatting = windows
+	other partition  has ext3 formatting = linux based os 
+	In the ext4 FS - there is a single topmost folder
+		 =   /   = forward slash
+		 
+	In FAT32 FS =  many top folders 
+					C: , D: , 
+    -----------------------
+	 cd = change directory  
+	 pwd = present working directory
+	  /
+	  ---home **
+	  
+	Ex1  =  see prompt , enter many times , type clear
+	Ex2 =  type pwd  and see the current folder
+		   cd / 
+		   pwd
+		   see the current folder
+	Ex3 =  type  ls  =  content of topmost folder
+	
+	do the foll -
+	 cd bin  = relative
+     pwd
+
+     cd /   = absolute
+     cd /bin  = absolute
+     pwd
+     cd /
+     cd ./bin  = relative
+     pwd
+_______________________________
+
+   cd path 
+   
+   2 types of path = absolute path, relative path 
+	absolute path = starts with  /
+    relative path = start with  
+				./bin  = bin subfolder in pwd
+				../bin = bin subfolder in the parent pwd
+				bin = bin subfolder in pwd
+_______________________________
+ mkdir = make a directory/folder
+    we dont have permissions to create folders
+	in / or its subfolder 
+	
+	in the /home folder - one folder for each USER is created .
+	
+	 cd /home/username = THIS IS YOUR HOME FOLDER
+	 = u have permissions to create ore remove here
+	 = this is your tilde folder 
+	 = you see tilde in prompt 
+	    [faculty@localhost ~]$
+		
+________________________________
+Ex ---
+    cd to home folder
+	a. cd /home/faculty
+	OR
+	b. cd ~
+	
+	mkdir ./hurray
+	ls = LIST the content of pwd 
+_______________________________
+Ex - 
+  pwd is ~
+  see the contents of topmost folder
+   ls /
+  see the content of bin folder 
+    ls /bin
+  see the content of parent folder /home
+     ls  /home
+	 OR
+	 ls ..
+_____________________________
+   Ex -  pwd is ~
+   create one more folder chess in hurray 
+   mkdir ./hurray/chess
+   See the contents of pwd 
+   ls
+   see the contents of hurray
+   ls ./hurray 
+   
+ ______________________________________
+ 
+ EX -  pwd is ~
+        cd to chess 
+		cd ./hurray/chess  }} new pwd 
+		see the contents of hurray 
+		ls ..
+		see the contents of ~ 
+		ls ~
+		OR
+		ls ../..
+		see the contents of home
+		ls /home
+		OR
+		ls ../../..
+		OR
+		ls ~/..
+_______________________________________		
+		Ex  --  pwd ~
+		- remove the hurray folder 
+		cd  ~
+		TRY :  rmdir hurray }}NON EMPTY does not working
+		rmdir ./hurray/chess
+		rmdir ./hurray
+		ls 
+______________________________________
+Ex  pwd ~ 
+    create folders One One/Two  One/Two/Three
+	 mkdir ./One ./One/Two ./One/Two/Three
+	 ls
+	 ls ./One
+	 ls ./One/Two
+	 
+	 SHORTCUT to list the contents of SUBFOLDERS
+	 ls -R
+______________________________________	 
+	Remove the One folder 
+		 rm -r ./One  }} remove non empty folders recursively
+	 
+	 
+	 
+	 
+	 
+	 
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+   
+   
+   
+   
+   
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+		   
+		   
+		   
+	
+	
+	
+	
+	
+	
+
+
+
+		
+			
+			
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+			 
+			 
+			 
+			 
+			 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+  
+  
+  
+
+
+
+
+
+
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+				
+				
+				
+				
+				
+				
+  
+  
+  
+				   
+				   
+				   
+				   
+				   
+				   
+				 
+				 
+				 
+				 
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+   
+   
+   
+   
+   
+   
+
+
+	
