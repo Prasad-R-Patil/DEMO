@@ -1,0 +1,878 @@
+Process scheduling algorithms 
+
+factors - turnaround time, wait time, throughput, response time 
+
+who performs scheduling ? cpu schedular 
+ FCFS , SJF , Prio , RR 
+ Adv
+ FCFS - simple , no starvation
+ SJF - throughput improves bcoz Wt an Ta reduce
+ Prio - priority is considered, practical
+ RR- response time low,no starvation , multitasking effect 
+ 
+ Disadv 
+ No multitasking effect 
+ FCFS - low cpu burst May have higher Ta
+ SJF = therotical , STARVATION 
+ PRIO = STARVATION
+ ----------
+ 
+ RR -  Throughput poor , Overhead of context switching
+ 
+ _____________________________________
+ 
+ Process/Thread Synchronization 
+ 
+ Solution = synchronization
+ Problem  = When two processes /threads are accessing same data so "RACE CONDITION"  problem may occur which leads to inconsistent data state .
+ 
+ RACE CONDITION = data sharing problem 
+ Concurrent access leads to race condition
+ unpredictable and un-reproducable problem
+ 
+ Solution to Race condition = mutual exclusion 
+ at a time only one thread can access the shared data 
+ if the other thread tries to access the data it should not allowed .
+ 
+ To implement mutual exclusion 
+ a. MARK the critical sections( that part of the code which accesses shared data ) 
+ b. use a flag to indicate open or close for access
+ 
+ Critical section execution should be MUTUALLY EXCLUSIVE 
+ 
+ FLAG for mutual exclusion is called as MUTEX 
+ MUTEX must be IMMUNE to race condition
+ 
+ MUTEX will be a special variable of type SEMAPHORE
+ 
+ SEMAPHORE = is a integer variable
+ it can be accessed by ONLY two fucntions
+    wait and signal [ some people use P and V  ]
+	
+	These functions are immune to race condition
+	because they are ATOMIC Functions- they will not be interrupted 
+	
+	 wait(sema)
+	 {
+		if(sema == 0)
+		   block 
+		 else{
+		     sema --
+		    return and continue with code
+			}
+	 }
+	 
+	 signal(sema)
+	 {
+	     sema++
+	 }
+	 
+
+ mutex is TOGGLED from 0 to 1 and 1 to 0	 
+	
+2 types of semaphores
+1. MUTEX   value toggles bet 0 and 1
+      Achieving mutual exclusion of critical section to protect from race condition in a shared data = thread safety
+	  
+2. COUNTING SEMAPHORE = value moves in the range
+						0 to n and n to 0 
+		It itself acts as a thread safe shared data 
+		
+Producer Consumer Problem 
+     Producer = produce
+	 Consumer = consume
+
+BUFFER IS FINITE . Bounded Buffer Problem
+3 semaphores are used 
+1. mutex = protect access to buffer
+2. counting semaphore = full ( 0 === 10 )
+3. counting semaphore = empty ( 10 === 0 )
+
+    producer()
+	{
+	    while(true){
+		 wait(empty)
+		 wait(mutex)
+		item = produce()
+		put item in a shared buffer
+		 signal(mutex)
+		 signal(full)
+		}//end of while
+	}
+	
+	consumer()
+	{
+	    while(true){
+		wait(full)
+		wait(mutex)
+		pick item from shared buffer
+		signal(mutex)
+		signal(empty)
+		consume()
+		}//end of while
+	}
+________________________________________
+
+
+Deadlocks = deadlock is a problem 
+
+Symptom = process seem to wait infinitely for a resource.
+
+Kernel uses a GRAPH Data structure RAG = Resource Allocation Graph
+If there is a cycle in RAG = It may be a deadlock
+
+For a deadlock to occur 4 neccessary conditions =
+ 1. mutual exclusion = resource is mutually exclusive then deadlock may occur
+ 
+ 2. no preemption= kernel is not preemptive
+   kernel will not FORCE the process to release resource. Resource will be released ( yeild ) by the process at its own will.
+   
+ 3. Hold and wait =   one process can hold a resource and wait for other 
+ 
+ 4. Circular Wait  =  P1 waits for P2 and P2 waits for P3 and P3 waits for P1
+
+Dining Philosopher's Problem ------
+ demonstrates deadlock condition  = semaphores(mutex) are used to solve the problem
+ 
+ 
+ 
+ Solution to deadlock ---
+ 1. Deadlock Prevention ( break any one neccessary condition )
+     Or
+	Deadlock Avoidance ( Keep the system in SAFE STATE - Banker's Algorithm)
+	
+ 2.  Deadlock Resolution/Handling
+      ( kill a low priority process in the RAG cycle
+	     release resource 
+		 use it to solve deadlock
+		 If not - repeat
+		 ) = POST Deadlock Handling
+		 
+ 3.  IGNORE
+__________________________________________
+Compare Synchronization Deadlocks Starvation  
+
+SIMILARITY = INFINITE WAIT  
+  synchronization blocks will wait  and if nobody signals the mutex OR signal(mutex) runs before wait 
+  Process waits infinitely for the mutex to OPEN 
+  
+  starvation = process waits for CPU too long due to low priority
+  
+  deadlock =  4 neccessary conditions
+  
+ _____________________________________
+ 
+ Differences CAUSE OF WAIT are different
+ Solutions are different
+ 
+ Synchronization based deadlock - infinite wait can be solved by using proper signal, timed wait 
+ 
+ STARVATION  based infinite wait is solved by  AGEING = after a particular time promote the priority of process
+ 
+ Deadlock based infinite wait can be solved by = Prevent/Avoid, handling , ignore
+ ___________________________________________
+ SHELL SCRIPTS
+ 
+ Variable in shell script
+    local variable
+	environment variables =  Variable that is globally used by all processes on a system
+	
+Meta Charachter =  $ , * 
+  $v = show the value of the variable
+  * = Wild card symbol = any char
+  -----------------------
+ EX1  - WASS  
+    print the home folder of the current user
+	print the current user
+	print the current shell
+	
+	using env variables  HOME USER SHELL
+	echo "$HOME"
+    ....
+_____________________________________
+Ex2 - print the env variable PS1 and PS2
+		Prompt String1
+		
+		\  = escape char = use it to use the other meaning of the charachter
+		 n 
+		 \n 
+		 t
+		 \t
+		 
+		 $ == show the var value
+		 \$  =  print the dollar as it is
+		 
+	PS1 = [\u@\h \W]\$	 
+	
+	Change the PS1 using export
+	 export PS1="hi"
+--------------------------------------	
+Ex2 ---  File Permissions    command  chmod command
+
+File permissions and Folder permissions
+ls -l somefile
+rw-rw-r--
+
+---     ---     ---
+Owner   Group   Other users
+ u       g       o
+
+r w x = read write execute
+
+r permission is granted
+file = open in vi for reading
+	 = cat tac
+	 
+folder = ls ,ls -l , ls -R 
+
+w permission is granted
+file  = open in vi and :w, :wq 
+folder =  mkdir, touch, rmdir, rm -r , rm , create new file with vi , cp , mv 
+
+x permission
+file = ./a.out   }} run 
+folder = cd 
+
+chmod 
+
+1. add or remove permission
+2. assign permission
+3. octal permission
+
+rw-rw-r--  Ex = add w permission to others
+			 chmod o+w somefile
+
+rw-rw-rw-   Ex = remove w from all 3 
+			chmod ugo-w somefile
+
+r--r--r--  Ex = add x to user and group
+			chmod ug+x somefile
+			
+r-xr-xr--   Ex = change g such that w is added and x is rmoved but r remains as it is
+			chmod g=rw somefile
+
+r w x 
+0 0 0  0
+0 0 1  1
+0 1 0  2
+0 1 1  3
+1 0 0  4
+1 0 1  5
+1 1 0  6
+1 1 1  7
+
+
+r-xrw-r--   EX - grant all permissions to owner
+				rw to group and read only to others
+				chmod 764 somefile
+				
+rwxrw-r--   Ex - grant r to all
+              chmod 444 somefile
+            Ex - grant rx to all
+             chmod 555 somefile			
+__________________________________________
+	
+   shell scripts
+
+-------------------------
+Ex   
+x=20
+if [ $x -lt 50 ]
+then
+  echo "$x is less than 50"
+fi
+
+[shellscripts]bash if1.sh
+20 is less than 50
+[shellscripts]chmod u+x if1.sh
+[shellscripts]ls
+content.sh  forex.c  hell.sh  if1.sh  vars.sh
+[shellscripts]./if1.sh
+20 is less than 50
+
+--------------------------
+Ex  
+
+echo "enter x"
+read x
+if [ $x -lt 50 ]
+then
+  echo "$x is less than 50"
+else
+  echo "$x is not less than 50"
+fi
+
+[shellscripts]./if1.sh
+20 is less than 50
+[shellscripts]vi if1.sh
+[shellscripts]./if1.sh
+enter x
+99
+99 is not less than 50
+[shellscripts]./if1.sh
+enter x
+3
+3 is less than 50
+_____________________________________
+Ex 
+echo "enter x"
+read x
+if [ $x -lt 50 ]
+then
+  echo "$x is less than 50"
+elif [ $x -gt 50 ]
+then
+  echo "$x is greater than 50"
+else
+  echo "$x is  50"
+fi
+
+
+[shellscripts]vi if1.sh
+[shellscripts]./if1.sh
+enter x
+89
+89 is greater than 50
+[shellscripts]./if1.sh
+enter x
+12
+12 is less than 50
+[shellscripts]./if1.sh
+enter x
+50
+50 is  50
+
+
+
+______________________________
+operators that can be used in if
+  -lt  ,  -gt , -le , -ge , -eq , -ne 
+_____________________________________
+HW - WASS to accept a number and print whether it is odd or even 
+_____________________________________
+
+Loops
+ for
+ while
+ until 
+
+for((x=1;x<10;x++))
+do
+ echo "$x"
+done
+
+while [ $x -lt 20 ]
+do
+ echo "$x"
+ ((x=x+1))
+done
+
+until [ $x -gt 30 ]
+do
+ echo "$x"
+ ((x=x+1))
+done
+______________________________
+Integer arithmetic 
+command  expr
+
+[shellscripts]expr 12 + 30
+42
+[shellscripts]expr 12 - 30
+-18
+[shellscripts]expr 12 * 30
+expr: syntax error
+[shellscripts]expr 12 \* 30
+360
+[shellscripts]expr 12 \ 30
+expr: syntax error
+[shellscripts]expr 12 / 30
+0
+
+-------------
+WASS to accept two numbers and show the sum
+echo "enter 2 numbers"
+read a b
+
+expr $a + $b
+----------------
+echo "enter 2 numbers"
+read a b
+
+#using backquote to include the statement
+sum=`expr $a + $b`
+echo "sum=$sum"
+
+-----------------------------
+WASS  to show a menu to the user 
+  + - *  /
+  use if elif and show the result
+  after every run ask do u want to continue 
+  y/n  }}  loop
+-------------------------
+  To compare string  = use  = , !=
+echo "enter operator"
+read s
+
+if [ $s = '+' ]
+then
+ echo "adding"
+fi
+if [ $s != '+' ]
+then
+ echo "not adding"
+fi
+----------------------------------
+Unary operator  = it has a single operand 
+	-f -e -d 
+binary operator =  -lt -gt = !=
+
+echo "enter a file or folder name"
+read f
+
+if [ -f $f ]
+then
+  echo "$f is a file "
+  cat $f
+fi
+
+if [ -d $f ]
+then
+  echo "$f is a folder"
+  ls $f
+fi
+
+------------------------------------
+for f in `ls `
+do
+  echo "$f"
+  if [ -f $f ]
+  then
+    cat $f
+  fi
+
+done
+----------------------------------
+command line argument 
+
+bash cmdline.sh one two three four
+#positional parameters
+echo "$1 $2 $3"
+------
+#positional parameters
+echo "$1 $2 $3"
+
+echo "$@"
+
+sum=0
+for x in $@
+do
+ ((sum=sum+x))
+done
+echo "sum=$sum"
+_____________________________________
+ Text manipulation commands 
+  sort
+  head
+  tail
+  grep 
+
+______________________________
+[shellscripts]head -3 data
+
+kohli 500
+gukesh 1000
+[shellscripts]tail -3 data
+sachin 900
+dhoni 800
+
+
+head -lines  filename  }  top lines
+tail -lines  filename }  bottom lines
+
+------------------------
+sort data  = sort by first col alphabetically/lexically
+--------------
+sort by second column numerically 
+sort -k 2 -n data
+
+vaishali 400
+kohli 500
+prag 700
+dhoni 800
+sachin 900
+gukesh 1000
+----------------------
+sort -k 2 -n -r data
+sort by second col numerically desc (-r)
+----------------------
+PIPES   =  concatenate COMMANDS 
+command1 |  command2 | command3  }} output of command3
+
+[shellscripts]sort -k 2 -n -r data | head -1
+gukesh 1000
+[shellscripts]sort -k 2 -n -r data | head -2
+gukesh 1000
+sachin 900
+[shellscripts]sort -k 2 -n -r data | head -3
+gukesh 1000
+sachin 900
+dhoni 800
+[shellscripts]sort -k 2 -n -r data | head -3 | tail -1
+dhoni 800
+
+___________________________________
+
+Redirection  
+  copy the output of the command to a file 
+  Two ways
+   >  =  Overwrite
+   >> = append 
+
+STORING the top3 names in a file top3
+sort -k 2 -n -r data | head -3 >> top3
+
+______________________________
+wc  = word count 
+echo "alphonso"| wc -c
+------------------
+[shellscripts]wc -c data
+67 data
+[shellscripts]wc -l data
+8 data
+[shellscripts]wc -w data
+12 data
+
+----------------------
+WASS to accept a folder path and show how many entries are in it 
+
+ls | wc -l
+
+____________
+
+x=`ps -e | wc -l`
+((x=x-1))
+echo "number of processes are $x"
+______________________________
+
+WASS to accept numbers from user till user enters -1
+save all numbers to a file numdata 
+   LOOP 
+      enter a num 
+	  read n 
+	  if ..
+	  ...
+	  echo "$n" >> numdata
+
+sort the numbers in ascending 
+		sort -n  numdata 
+show count of total numbers added in the file 
+		cat numdata | wc -l 
+add all numbers in the file 
+		for x in `cat numdata`
+		do
+		  ((sum=sum+x))
+		done
+----------------------------------
+ grep  =  grep kya karta hai  = "grep searches"
+
+ Regular Expression --- it is a way to describe PATTERNs 
+
+  grep uses the pattern as input and gives the matching output 
+
+grep "a" data
+grep "echo" *
+
+[shellscripts]grep "^$" data | wc -l
+2
+[shellscripts]grep -v  "^$" data | wc -l
+6
+[shellscripts]wc -l data
+8 data
+
+--------------------------------
+[shellscripts]echo "hello" | grep "e"
+hello
+[shellscripts]echo "hello" | grep "ee"
+[shellscripts]echo "hello" | grep -E  "[a-z]+"
+------------
++  =  1 or more occurences 
+*  =  0 or more occurences
+?  =  single occurence
+
+
+GREP searching for title case 
+[shellscripts]echo "Prachi" | grep -E "[A-Z][a-z]+"
+Prachi
+[shellscripts]echo "prachi" | grep -E "[A-Z][a-z]+"
+
+GREP searching for 0 to 3 occurences of chars 
+[shellscripts]echo "ww" | grep -E "[a-z]{3}"
+[shellscripts]echo "www" | grep -E "[a-z]{3}"
+www
+[shellscripts]echo "wwwww" | grep -E "[a-z]{3}"
+wwwww
+[shellscripts]echo "wwwww" | grep -E "[a-z]{3}$"
+wwwww
+[shellscripts]echo "wwwww" | grep -E "^[a-z]{3}$"
+[shellscripts]echo "ww" | grep -E "^[a-z]{3}$"
+[shellscripts]echo "wws" | grep -E "^[a-z]{3}$"
+wws
+_____________________________________
+grep -E "^[A-Z].*"   0 or more occurences of any char after a capital
+	  grep -E "^[A-Z][a-z]+"   
+	  
+	  .   = any single char
+	  *   = 0 or more times occuring 
+	  +   = 1 or more occurences
+	  ?   = 0 or 1 occurence
+	  [A-Z]
+	  [a-z]
+	  [px] =   either p or x 
+	  l{2}  = 2 times occurence of l 
+	  r{2,4} = 2 , 3 or 4 times r has occured 
+	  
+	  find out a regular expression for valid mail ID 
+	    prachi@gmail.com
+		
+		@ should be preceded by any number of chars or numbers
+		@ should be followed by any number of chars followed by . followed by 3 letter
+	 
+	grep -E "[a-z A-Z 0-9]+@[a-z A-Z]+.[a-z]{2,3}"
+
+	 
+	Regular expression for a phone number
+	 020-12345678
+	 
+	  grep -E "[0-9]{3}-[0-9]{8}"
+
+
+
+  
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+	  
+	  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Regular Expression = Pattern Matching Language 
+ 
+  
+ grep -E "^[A-Z].*"   0 or more occurences of any char after a capital
+	  grep -E "^[A-Z][a-z]+"   
+	  
+	  .   = any single char
+	  *   = 0 or more times occuring 
+	  +   = 1 or more occurences
+	  ?   = 0 or 1 occurence
+	  [A-Z]
+	  [a-z]
+	  [px] =   either p or x 
+	  l{2}  = 2 times occurence of l 
+	  r{2,4} = 2 , 3 or 4 times r has occured 
+	  
+	  find out a regular expression for valid mail ID 
+	    prachi@gmail.com
+		
+		@ should be preceded by any number of chars or numbers
+		@ should be followed by any number of chars followed by . followed by 3 letter
+	 
+	grep -E "[a-z A-Z 0-9]+@[a-z A-Z]+.[a-z]{2,3}"
+
+	 
+	Regular expression for a phone number
+	 020-12345678
+	 
+	  grep -E "[0-9]{3}-[0-9]{8}"
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
