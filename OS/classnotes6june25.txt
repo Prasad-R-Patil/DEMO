@@ -1,0 +1,514 @@
+Good Morning :))
+Memory Management
+
+Memory = RAM 
+
+Visualize RAM ---
+RAM has addresses / locations 
+Each location has 1 byte of data
+
+Addressing  = Physical address , logical address, offset address , actual address , base address
+
+physical address = It starts with 1 upto size of RAM
+      1 _________
+	  2 _________
+	  3 _________
+	  4 _________
+	  5 _________
+	  6 _________
+	  7 _________
+	  8 _________
+	  9 _________
+	  10 _________
+	  ...
+	  ....
+-----------------------
+WHO SITS on the physical address  =  Process
+
+	  1 _________
+	  2 _________
+	  3 _________
+	  4 _________
+	  5 _________
+	  6 _________
+	  7 _________
+	  8 _________
+	  9 _________
+	  10 _________
+
+
+
+   Process = P1 = Proces space = address space
+   code (Instructions ) /Data 
+	P1 = size 4
+	0 I1
+	1 I2
+	2 D1
+	3 D2
+  Logical address = offset address 
+  address within the process ( internal address  )
+  it always begins with 0
+	P2 = size 5
+	0 I1
+	1 I2
+	2 I3
+	3 D1
+	4 D2
+
+Loaded the P1 and P2 in the RAM 
+      1 ___0P1 I1______  ( 1 = base address of P1 )
+	  2 ___1P1 I2______
+	  3 ___2P1 D1______
+	  4 ___3P1_D2_____
+	  5 ___0P2 I1______  5 = base address of P2 )
+	  6 ___1P2 I2______
+	  7 ___2P2 I3______
+	  8 ___3P2 D1______
+	  9 ___4P2 D2______
+	  10 _________
+_____________________________________
+PC register in CPU = Program Counter = address of next instruction = OFFSET address of the process 
+
+ACTUAL address of I2 in P1 = Base of p1 + Offset of I2
+						   = 1 + 1
+						   = 2
+
+Actual addres of D1 is P2= Base of p2 + offset ofD1
+							5 + 3 =8
+____________________________________________
+CPU scheduling = schedular , low level schedular, short term schedular , cpu-schedular
+
+Who performs memory management? 
+High Level Schedular , Long Term Schedular ( LTS ) 
+It will find a free space to load the process in RAM 
+_____________________________________
+Memory is organized in two ways 
+1. Variable Partition Scheme
+2. Fixed Partition Scheme
+
+The partitions are Logical partitions.
+
+Variable Partition scheme = number of partitions change
+size of partitions is variable 
+
+      1 ___0P1 I1______  ( 1 = base address of P1 )
+	  2 ___1P1 I2______
+	  3 ___2P1 D1______
+	  4 ___3P1_D2_____
+	  5 ___0P2 I1______  5 = base address of P2 )
+	  6 ___1P2 I2______
+	  7 ___2P2 I3______
+	  8 ___3P2 D1______
+	  9 ___4P2 D2______
+	  10 _________ 
+
+3 partitions  Part1 (1-4) , Part2 (5-9) ,Part3 (10 )
+
+      1 ___0P1 I1______  ( 1 = base address of P1 )
+	  2 ___1P1 I2______
+	  3 ___2P1 D1______
+	  4 ___3P1_D2_____
+	  5 ___
+	  6 ___
+	  7 ___
+	  8 ___
+	  9 ___
+	  10 _________ 
+
+After P2 terminates , number of partitions 
+	Part1 (P1 4 ) , Part2 ( Free , 6 )
+	-----------
+	If a process P3 wants to be loaded
+	P3 has size 8 
+	LTS ? request rejected as free space >= reqd size is not available 
+	----------
+	If a process of size 3  P4 wants to be loaded
+	LTS?  load
+	-------------------
+	  1 ___0P1 I1______  ( 1 = base address of P1 )
+	  2 ___1P1 I2______
+	  3 ___2P1 D1______
+	  4 ___3P1_D2_____
+	  5 ___0P4
+	  6 ___1P4
+	  7 ___2P4
+	  8 ___
+	  9 ___
+	  10 _________ 
+	
+	Part1 (P1 4) ,Part2 (P4 3) ,Part3 (free 3)
+----------------------------
+P1 terminates
+
+	  1 ___
+	  2 ___
+	  3 ___
+	  4 ___
+	  5 ___0P4
+	  6 ___1P4
+	  7 ___2P4
+	  8 ___
+	  9 ___
+	  10 ___
+
+Part1 ( Free 4) , Part2( P4 3 ), Part3 (Free 3) 
+Total free space  - 7 
+P5 of size 5 wants to be loaded ?
+LTS ? request reject bcoz contiguos free space not available.... EXTERNAL  FRAGMENTATION PROBLEM 
+
+Solution to external fragmentation
+a. COMPACTION 
+		Shift the processes to one end so that all free space will be contiguous 
+		---theoretical solution , not practical
+c. Paging  
+		pratical solution of external fragmentation 
+		
+		
+How to calculate Actual address ?
+	Base + Offset 
+	
+Free space management  ----
+	1__
+	2__
+	3__
+	4__P1
+	5__P1
+	6__P1
+    7__
+    8__
+    9___
+    10___	
+		
+	consecutive free spaces= free hole 
+		free hole1  = 1-3
+		free hole2 =  7-10
+	
+Process P2 wants to loaded . Size of P2 is 2
+LTS ??? load . Where to load ? 	
+	Which free space allocation technique is used ?
+	First Fit = allocate that hole size >=  process
+		that is available first in the sequence 
+		 free-hole1
+		 
+	Best Fit  = select that free hole for which
+			holesize - processsize is MINIMUM 
+			free-hole1
+	Worst Fit = select that free hole for which
+			holesize - processsize is Maximum 
+			free-hole2 
+_______________________________________________
+Fixed Partition Scheme  = number of partitions is fixed and size of partitions is also fixed 
+
+	Memory is PRE DIVIDED  into equal size partitions 
+	Equal size partitions = FRAMES 
+
+Memory with Fixed Partitions 
+
+Frame0_____
+Frame1______
+Frame2______
+Frame3______
+Frame4______
+Frame5______
+
+let us assume that our frame size is 4kb	  
+Processes are allocated space in terms of frames 	
+Process p6 wants to be loaded , size 8kb
+LTS??   allocate 2 Frames consecutively 
+
+Frame0_ P6____
+Frame1__P6____
+Frame2______
+Frame3______
+Frame4______
+Frame5______
+
+Process P7 wants to be loaded size =9kb
+LTS ?  3 Frames are allocated
+
+Frame0_ P6____
+Frame1__P6____
+Frame2__P7____
+Frame3__P7____
+Frame4__P7____
+Frame5______
+
+P7 gets 3 Frames = 3*4 = 12kb 
+P7 needs 9kb   
+Space in 3rd frame = 12-9 = 3kb is UNUSED by P7 and cant be allocated to other process = problem INTERNAL FRAGMENTATION = space is wasted = as process size is not exact multiple of frame size . 
+
+Will the Fixed partition scheme have external fragmentation ? 
+	YES 
+	Ex - P8 wants 3 Frames 
+		3 Frames are free available but they are not contiguous  , then P8 will be rejected = EXTERNAL FRAGMENTATION .
+
+Actual address = Base of Base Frame  + offset of instr
+----------------------------------------------
+  Remove the neccesity of contiguous memory location 
+  
+  Kernel will divide the process and load it in non contiguous space 
+  
+  Kernel will divide the process on the following basis :
+  a. Content = Segmentaion scheme
+  b. Size = Paging scheme 
+  
+  Segmentation Scheme = Variable Partition Scheme
+     Process is divided into UNEQUAL parts called as Segments based on content . Code segment, data segment, stack segment , heap segment 
+  
+  P1 = size 5
+    ---------SEG 0 ---
+	0 I1   ( SEG OFFSET - internal address of Segment )
+	1 I2
+	2 I3
+	----------- SEG 1 ---
+	0 D1
+	1 D2
+    ------------
+  
+  Process is divided into two segments 
+  SEG 0 
+  SEG 1
+  Each segment has its own offset address 
+  
+    1___P1 SEG 0 
+	2___P1 SEG 0
+	3__ P1 SEG 0
+	4_P2
+	5_P2
+	6_P3
+	7_P3
+	8_P3
+	9_P1 SEG 1
+	10_ P1 SEG 1
+  
+  To keep track of the segments --
+  Each Process will a Separate SEGMENT TABLE 
+	SEG NO |  SEG BASE |  SEG SIZE 
+	  0			1			3
+	  1			9			2
+  
+  Adv :
+	External fragmentation is REDUCED
+	NO Internal FRAGMENTATION
+  DisAdv: 
+	External Fragmentation may still occur - if contiguous space for segment is not available 
+	overhead of segment table per process
+  
+Paging Scheme =Based of Fixed Partition Scheme 
+	Memory is Pre divided = FRAMES 
+	Process is pre divided  = PAGES 
+	Page size is same as frame size 
+	Frame size = page size = 2
+	
+	P1 = size 5
+    ---------PAGE 0 ---
+	0 I1   ( PAGE OFFSET - internal address of Page )
+	1 I2
+	------------PAGE 1---
+	0 I3
+	1 D1 
+	----------- PAGE 2 ---
+	0 D2
+    ------------
+	
+	F0 - P1 Page 0
+	F1 - P2
+	F2 - P2
+	F3 - P1 Page 1
+	F4 - P3
+	F5 - P3
+	F6 - Page2
+	F7 - Free
+	
+	Kernel will keep track of the pages of the process using a data structure  PAGE TABLE per process
+			Page Number	| Frame Number
+				0			0
+				1			3
+				2			6
+	
+	Adv : External fragmentation is totally removed
+	DisAdv
+		- Internal fragmentation 
+		- HUGE PAGE TABLES  
+		- EXTRA Page Table Management Techniques have to be used .
+			1. TLB = Translation Lookaside Buffer = cache to store a part of page table for quick access ( performance will be good as long as cache HIT / cache miss fetch the page table from RAM or hard disk 
+			
+			2. Inverted page tables
+			3. Multilevel page tables
+			( to maintain the page tables on hard disk
+			and fetch whenever needed ) 
+			
+Actual address calculation in segmentation 
+
+         Segment Base address + segment offset address
+			
+	Segment base address is retrieved from segment table when segment number 
+	PC = holds seg no , seg offset 
+		
+Actual address calculation in paging
+		page-frame-base-address  +  page offset
+		
+	From page table 
+	page number ===>frame number ==>frame base 
+	PC  =  holds page no, page offset 
+_____________________________
+	
+	Contiguously or non contiguously
+	The full process is loaded in the Memory !!!!
+	This is problematic in foll way : 
+	   a. If the process size is larger than RAM size then we can never run that process
+	   b. unnecessary loader effort to load a code that may not run ever , also it will occupy space 
+	   c. DEGREE of MULTIPROGRAMMING is reduced 
+	   Number of processes loaded in RAM at a time reduces
+	   User cannot start many programs at a time 
+	-------------------------------
+	Partial process will be loaded in RAM 
+	If process has 100 pages 
+	load 10 pages - create a page table of 10 entries
+	remainind 90 pages are kept on the 
+	hard disk(SWAP SPACE  --- VIRTUAL MEMORY )
+	
+	Process execution start
+		PC = next address Page 4 offset 20 = FOUND done
+		PC = next address is Page 20 offset 5 
+			Page not found =  Interrupt = Page Fault 
+			Current process WAITS = FAULTING Process
+			Process has DEMANDED page 20 !!!
+	DEMAND PAGING /Virtual memory Managment !!!
+	
+		So the interrupt handler of Page fault will find a free frame and load the page 20 ,
+		update the page table 
+		faulting process moves to ready and run 
+	
+-----------------
+		If the process page faults for page 20 and	
+		no free frame is available !!!!!
+		
+		Page Replacement / Page swapping 
+		Existing page in some frame is replaced by demanded page !!!
+---------------------------------------
+		Which page should be replaced ? 
+	1. Local page replacement  = replace page of faulting process
+	2. Global page replacement = replace page of any process
+		PROBLEM of THRASHING = Multiple processes start faulting as their pages are replaced for other processes , like a chain reaction many processes are waiting for their page - system seems to hang.
+		
+	Local Page Replacement = Which page should be replaced  of the same process ? 
+	OPT policy = Optimum page replacement 
+	   Replace a page that will not be needed in future 
+	   This is a theoretical concept - not predictable 
+	 
+		PAGE Replacement Algorithms ----
+	LRU = Least Recently Used = page that has oldest access time will be replaced
+	MRU = Most Recently Used = page that has latest access time will be replaced
+	FIFO = page that is oldest loaded will be replaced
+	LIFO = page that has been recently loaded will be replaced .
+	
+	What happens when the page is replaced ? 
+	1. overwrite the frame with new page 
+	      WHEN the page to be replaced is NOT MODIFIED 
+		  
+	2. WRITE the earlier page of the frame in the SWAP SPACE and then overwrite the frame with new page 
+		WHEN the page to be replaced is modified 
+	
+	Every page is associated with some STATUS BITS 
+		one is DIRTY BIT = If this bit is set it means the page is MODIFIED so it should be WRITTEN before new page is loaded 
+		ELSE skip writing the page 
+	
+	Dirty bit prevents unnecessary page writing to hard disk Useful as writing to hard disk is an expensive action .
+	
+	Throttling  =  Kernel will reduce the bandwidth of page replacement , page writing etc for a process.
+	It may restrict the page activity within some threshold . This is usefult to preserve power consumption , better for low power situation 
+	However process will SLOW DOWN 
+	
+	-------------------------
+Page reference string = Page access string of process
+	   1, 2, 3 , 4,1,2,5,2
+
+Number of available Frames  = 3 
+	F0 
+	F1
+	F2
+	calculate number of page faults and page replacements 
+	FIFO
+	
+	
+	
+	Page reference string
+	 3, 1 ,3 , 2 ,1,4,2,5,2
+	LRU
+	number of frames = 3
+	
+	F0  F1  F2
+	3*   1   2  ( 3 page faults ) 
+	4    1*  2  ( 1pf and 1 pr ) 
+	4*    5   2  ( 1pf and 1 pr ) 
+	
+	
+	3, 1 ,3 , 2 ,1,4,2,5,2
+	MRU  , number of frames =3 
+	 F0  F1  F2 
+	 3*   			1pf
+	 3   1*         1pf
+	 3*  1   
+	 3   1   2*     1pf
+	 3   1*  2
+	 3   4*  2      1pf and 1 pr
+	 3   4   2*
+	 3   4   5*     1pf and 1 pr
+	 3   4   2*     1pf and 1pr 
+	
+	LIFO  
+	3, 1 ,3 , 2 ,1,4,2,5,2
+	LIFO  , number of frames =3 
+	 F0  F1  F2 
+	 3*   			1pf
+	 3   1*         1pf
+	 3   1*   
+	 3   1   2*     1pf
+	 3   1   2*
+	 3   1   4*      1pf and 1 pr
+	 3   1   2*     1pf and 1 pr 
+	 3   1   5*     1pf and 1 pr
+	 3   1   2*     1pf and 1pr 
+	
+HW :  Page access string :  3,1,2,3,4,5,2,1,2,4
+	find number of page faults and page replacements 
+	number of frames  = 4 
+	use FIFO , LIFO , LRU , MRU 
+	
+_____________________________
+Generally for LRU, MRU , LIFO 
+Increasing number of frames decreases page faults
+
+FIFO = Belady's ANOMALY  = increasing number of frames may increase page faults.
+__________________________________
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+
+
+
+
+
+
+
+ 
+
+
+
+
+
