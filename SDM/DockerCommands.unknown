@@ -1,0 +1,81 @@
+1. docker --version
+2. docker images
+3. docker pull <image_name>
+4. docker run <image_id>
+5. docker info
+6. docker ps
+7. docker ps -a
+8. docker login
+9. docker logout
+10. docker start <container_id>
+11. docker stop <container_id>
+12. docker rmi <image_id>
+13. docker rm <container_id>
+14. docker build .
+15. docker build -t <image_name:version> .
+16. docker help
+When running on cloud, always <sudo> will be used before these commands.
+
+-----------------------------------------------------------------
+
+🐳 Docker Basics
+Command	Description
+docker --version	Check Docker version
+docker info	Show Docker system info
+docker help	List all Docker commands
+
+📦 Docker Images
+Command	Description
+docker pull <image>	Download an image from Docker Hub
+docker images	List all local images
+docker rmi <image>	Remove an image
+docker build -t <name> .	Build an image from Dockerfile
+
+🚢 Docker Containers
+Command	Description
+docker run <image>	Run a container from image
+docker run -it <image>	Run container in interactive mode
+docker run -d <image>	Run in detached mode
+docker ps	List running containers
+docker ps -a	List all containers
+docker stop <container>	Stop a running container
+docker start <container>	Start a stopped container
+docker restart <container>	Restart a container
+docker rm <container>	Remove a container
+docker exec -it <container> bash	Open shell in running container
+docker logs <container>	View logs of container
+
+📁 Volumes & Data
+Command	Description
+docker volume create <name>	Create volume
+docker volume ls	List volumes
+docker volume inspect <name>	Volume details
+docker volume rm <name>	Remove volume
+
+🌐 Networks
+Command	Description
+docker network ls	List networks
+docker network create <name>	Create network
+docker network inspect <name>	Inspect network
+docker network rm <name>	Remove network
+
+🧱 Dockerfile & Build
+Command	Description
+docker build -t <name> .	Build Docker image from Dockerfile
+docker tag <image> <tag>	Tag an image
+docker history <image>	Show image layers
+
+🐙 Docker Compose
+Command	Description
+docker-compose up	Start services
+docker-compose down	Stop services
+docker-compose build	Build images
+docker-compose logs	View logs
+docker-compose ps	List services
+
+🧹 System Cleanup
+Command	Description
+docker system prune	Remove unused containers, networks, images, and cache
+docker image prune	Remove unused images
+docker container prune	Remove stopped containers
+docker volume prune	Remove unused volumes

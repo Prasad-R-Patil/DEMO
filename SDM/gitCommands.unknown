@@ -1,0 +1,13 @@
+1. git init
+2. git add .
+3. git status
+4. git commit -m <text>
+5. git clone <repo_url>
+6. git push origin <branch_name>
+7. git config --user.name "username"
+8. git config --user.email "email"
+9. git pull <branch_name>
+10. git branch <branch_name>
+11. git checkout <branch_name>
+12. git merge <branch_name> note: can create multiple branches
+
