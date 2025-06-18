@@ -1,0 +1,14 @@
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\bin\Debug\net8.0\Example2.exe
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\bin\Debug\net8.0\Example2.deps.json
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\bin\Debug\net8.0\Example2.runtimeconfig.json
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\bin\Debug\net8.0\Example2.dll
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\bin\Debug\net8.0\Example2.pdb
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.AssemblyInfoInputs.cache
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.AssemblyInfo.cs
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.csproj.CoreCompileInputs.cache
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.dll
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\refint\Example2.dll
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.pdb
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\Example2.genruntimeconfig.cache
+C:\Dotnet-Jun-2025\Day-1\Assignments\Example2\obj\Debug\net8.0\ref\Example2.dll

@@ -1,0 +1,14 @@
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\bin\Debug\net8.0\FirstConsoleApp.exe
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\bin\Debug\net8.0\FirstConsoleApp.deps.json
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\bin\Debug\net8.0\FirstConsoleApp.runtimeconfig.json
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\bin\Debug\net8.0\FirstConsoleApp.dll
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\bin\Debug\net8.0\FirstConsoleApp.pdb
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.AssemblyInfoInputs.cache
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.AssemblyInfo.cs
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.csproj.CoreCompileInputs.cache
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.dll
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\refint\FirstConsoleApp.dll
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.pdb
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\FirstConsoleApp.genruntimeconfig.cache
+C:\Dotnet-Jun-2025\Day-1\FirstConsoleApp\FirstConsoleApp\obj\Debug\net8.0\ref\FirstConsoleApp.dll
