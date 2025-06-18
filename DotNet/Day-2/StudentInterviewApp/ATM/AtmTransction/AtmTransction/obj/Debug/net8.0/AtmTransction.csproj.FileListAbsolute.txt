@@ -1,0 +1,14 @@
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.AssemblyInfoInputs.cache
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.AssemblyInfo.cs
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.csproj.CoreCompileInputs.cache
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\bin\Debug\net8.0\AtmTransction.exe
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\bin\Debug\net8.0\AtmTransction.deps.json
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\bin\Debug\net8.0\AtmTransction.runtimeconfig.json
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\bin\Debug\net8.0\AtmTransction.dll
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\bin\Debug\net8.0\AtmTransction.pdb
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.dll
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\refint\AtmTransction.dll
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.pdb
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\AtmTransction.genruntimeconfig.cache
+C:\Users\group024\Desktop\SP\ATM\AtmTransction\AtmTransction\obj\Debug\net8.0\ref\AtmTransction.dll
